@@ -1,0 +1,26 @@
+<div class="lot-pane">
+	<div class="lot-map">
+		<div lots-map geolocation="geolocation" class="map-canvas" lot="lot"></div>
+	</div>
+
+	<div class="container-fluid gutter">
+		
+		<div class="lot-details">{{lot.address}}</div>
+
+		<div class="lot-details">
+			Space Available
+			<div class="pull-right colour-purple">{{lot.spacesTaken}}/{{lot.spacesAvailable}}</div>
+		</div>
+
+		<button class="btn btn-light btn-stretch vertical-margins" ng-click="getDirections()">Get Directions</button>
+
+		<div class="lot-message">
+			This lot is only available during the week when there is no special service that day. Check the lot before attempting to park to make sure there are spaces.
+		</div>
+
+	</div>
+
+	<div class="park-button">
+		<button class="btn">PARK</button>
+	</div>
+</div>

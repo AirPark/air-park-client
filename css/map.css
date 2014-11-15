@@ -1,0 +1,14 @@
+.map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.lot-map {
+  height: 140px;
+}
+
+@media screen and ( max-height: 1000px ){
+  .lot-map {
+    height: 45px;
+  }
+}

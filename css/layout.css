@@ -1,0 +1,100 @@
+html, body, .air-play {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  color: #767676;
+  font-size: 18px;
+}
+
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
+/* Navbar Header */
+
+.air-play .navbar {}
+
+  .air-play .navbar {
+    background-color: #6442a3;
+    margin-bottom: 0;
+  }
+
+  .air-play .navbar > .container-fluid > .navbar-header {
+    float: none;
+    text-align: center;
+  }
+
+  .air-play .navbar > .container-fluid .navbar-brand {
+    float: none;
+    color: #fff;
+  }
+
+  .air-play .navbar > .container-fluid .navbar-back {
+    background: url('/images/arrow.png');
+    width: 50px;
+    height: 50px;
+    float: left;
+    border: 0;
+  }
+
+/* VIEW */
+
+.main-view {
+  height: 100%;
+  margin-bottom: 50px;
+  position: fixed;
+  top: 50px;
+  bottom: 50px;
+  width: 100%;
+}
+
+.main-view .gutter {
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 15px;
+}
+
+.main-view .vertical-margins {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* FOOTER */
+
+.navbar-fixed-bottom {}
+
+  .navbar-fixed-bottom .item {
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+  }
+
+/* COMPONENTS */
+
+.btn {
+  font-size: 18px;
+}
+
+.btn-light {
+  background: #b5c7ff;
+  color: #fff;
+}
+
+.btn-light:hover {
+  color: #fff;
+}
+
+.btn-stretch {
+  width: 100%;
+}
+
+.colour-purple {
+  color: #6442a3
+}

@@ -1,0 +1,21 @@
+.lot-pane .park-button {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  height: 140px;
+  background-color: #3a304d;
+  text-align: center;
+}
+
+.lot-pane .park-button .btn {
+  height: 50%;
+  color: #fff;
+  margin: 6% 0;
+  width: 50%;
+  background: #aad56c;
+  font-size: 36px;
+}
+
+.lot-pane .lot-details {
+  line-height: 50px;
+}
