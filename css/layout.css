@@ -31,6 +31,9 @@ a:hover {
   .air-play .navbar > .container-fluid .navbar-brand {
     float: none;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .air-play .navbar > .container-fluid .navbar-back {
@@ -50,12 +53,12 @@ a:hover {
   top: 50px;
   bottom: 50px;
   width: 100%;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 
 .main-view .gutter {
-  padding-right: 25px;
-  padding-left: 25px;
-  padding-top: 15px;
+  padding: 15px 25px 25px 25px;
 }
 
 .main-view .vertical-margins {

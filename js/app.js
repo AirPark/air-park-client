@@ -1,6 +1,8 @@
 var app = angular.module('airPark', 
     [
-      'ngRoute'
+      'ngRoute',
+      'ngAnimate',
+      'LocalStorageModule'
     ],
     [
       '$routeProvider',

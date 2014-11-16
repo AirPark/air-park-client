@@ -1,24 +1,35 @@
-app.service('userModel', function(){
+app.service('userModel', ['localStorageService', function(localStorageService){
 
-  var user = null;
+  var user = {},
+      defaultUser = null;
 
-  function isLoggedIn() {
-    return !_.isEmpty(user) && moment.isBefore(user.expiry);
+  if (localStorageService.get('user')) {
+    user = localStorageService.get('user');
   }
 
-  function login(email) {
-    user = {
-      email: email,
-      expiry: moment().add(30, 'days')
-    };
+  function getuser() {
+    return user;
+  }
+
+  function saveUserData(data) {
+    _.forEach(data, function(value, key) {
+      console.log(key, value, user);
+      user[key] = value;
+    }, user);
+    localStorageService.set('user', user);
+  }
+
+  function hasCreditCardData() {
+console.log(3, user);
+    return !!user && !!user.stripe && user.stripe.customerId;
   }
 
   return {
-    isLoggedIn: isLoggedIn,
-    login: login
+    get: getuser,
+    save: saveUserData,
+    hasCreditCardData: hasCreditCardData
   };
-
-});
+}]);
 
 
 app.service('lotsModel', ['$http', '$q', function($http, $q) {
@@ -29,16 +40,24 @@ app.service('lotsModel', ['$http', '$q', function($http, $q) {
       name: 'Basilica',
       address: '200 Miliary Rd. St. John\'s, NL',
       cost: 4.00,
-      spacesAvailable: 10,
-      spacesTaken: 2
+      capacity: 10,
+      message: 'This lot is only available during the week when there is no special service that day. Check the lot before attempting to park to make sure there are spaces.'
     },
     {
       id: '2',
       name: 'Common Ground',
       address: '30 Harvey Road, St. John\'s, NL',
       cost: 4.00,
-      spacesAvailable: 4,
-      spacesTaken: 4
+      capacity: 4,
+      closed: true
+    },
+    {
+      id: '3',
+      name: 'Bruneau Centre for Innovation and Research',
+      address: 'Bruneau Centre for Innovation and Research, Memorial Univerity, St. John\'s NL',
+      cost: 4.00,
+      capacity: 120,
+      closed: false
     }
   ];
 

@@ -60,7 +60,7 @@ app.directive('lotsMap', ['lotsModel', '$location', '$timeout', function(lotsMod
 
             parkingIcon  = '/images/parking.png';
 
-            if ((lot.spacesAvailable - lot.spacesTaken) < 1) {
+            if ((lot.spacesAvailable - lot.spacesTaken) < 1 || lot.closed) {
               parkingIcon = '/images/parking-closed.png';
             }
 

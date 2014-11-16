@@ -96,14 +96,49 @@ app.controller('MapCtrl', ['$scope', '$location', 'lotsModel',
   }
 ]);
 
-app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel',
-  function($scope, $routeParams, $location, lotsModel) {
+app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', 'userModel',
+  function($scope, $routeParams, $location, lotsModel, userModel) {
     
+    $scope.showConfirm = false;
     $scope.lot = lotsModel.get($routeParams.id);
+    $scope.userIsPaid = false;
 
     $scope.getDirections = function() {
       window.location.href = 'https://www.google.com/maps/dir/Current+Location/' + $scope.lot.address;
     };
 
+    $scope.toggleConfirm = function() {
+      $scope.showConfirm = !$scope.showConfirm;
+    };
+
+    $scope.park = function() {
+      
+      $scope.toggleConfirm();
+
+      if (!userModel.hasCreditCardData()) {
+        $scope.showCreditForm = true;
+        return;
+      }
+      $scope.showPaid = true;
+      $scope.userIsPaid = true;
+    };
+
+    $scope.saveCreditCard = function() {
+      var data = {
+        stripe: {
+          customerId: 1
+        }
+      };
+
+      userModel.save(data);
+
+      $scope.showCreditForm = false;
+      $scope.pay();
+    };
+
+    $scope.pay = function() {
+      $scope.showPaid = true;
+      $scope.userIsPaid = true;
+    };
   }
 ]);

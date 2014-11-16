@@ -8,19 +8,81 @@
 		<div class="lot-details">{{lot.address}}</div>
 
 		<div class="lot-details">
-			Space Available
-			<div class="pull-right colour-purple">{{lot.spacesTaken}}/{{lot.spacesAvailable}}</div>
+			Capacity
+			<div class="pull-right colour-purple">{{lot.capacity}}</div>
 		</div>
 
 		<button class="btn btn-light btn-stretch vertical-margins" ng-click="getDirections()">Get Directions</button>
 
-		<div class="lot-message">
-			This lot is only available during the week when there is no special service that day. Check the lot before attempting to park to make sure there are spaces.
-		</div>
+		<div class="lot-message">{{lot.message}}</div>
 
 	</div>
 
-	<div class="park-button">
-		<button class="btn">PARK</button>
+	<div class="park-button" ng-show="!lot.closed">
+		<!-- <button class="btn" ng-click="park()">PARK</button> -->
+		<a class="btn btn-green" ng-click="toggleConfirm()" ng-hide="userIsPaid">PARK</a>
+		<span ng-show="userIsPaid">You are parked!</span>
+	</div>
+
+	<div class="animate-slide confirmation" ng-show="showCreditForm">
+		<form role="form" class="gutter credit-card-form">
+			<h3>Enter payment information</h3>		
+		  <div class="form-group">
+		    <label for="name">Your Name</label>
+		    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+		  </div>
+		  <div class="form-group">
+		    <label for="number">Card Number</label>
+		    <input type="number" class="form-control" id="number" placeholder="Enter credit card number">
+		  </div>
+		  <div class="form-group">
+		    <label for="year">Expiry</label>
+		    <div>
+					<select class="">
+			    	<option>January</option>
+			    	<option>February</option>
+			    	<option>March</option>
+			    	<option>April</option>
+			    	<option>May</option>
+			    	<option>June</option>
+			    	<option>July</option>
+			    	<option>August</option>
+			    	<option>September</option>
+			    	<option>October</option>
+			    	<option>November</option>
+			    	<option>December</option>
+			    </select>
+			    <select class="">
+			    	<option>2014</option>
+			    	<option>2015</option>
+			    	<option>2016</option>
+			    	<option>2017</option>
+			    </select>
+			   </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="cvc">Security Number</label>
+		    <input type="number" class="form-control" id="cvc" placeholder="Enter CVC">
+		  </div>
+		  <div class="checkbox">
+		    <label>
+		      <input type="checkbox"> Save card
+		    </label>
+		  </div>
+		  <button type="submit" class="btn" ng-click="saveCreditCard()">Pay</button>
+		  <button type="submit" class="btn btn-default" ng-click="showCreditForm=!showCreditForm">Cancel</button>
+		</form>
+	</div>
+
+	<div class="animate-slide confirmation" ng-show="showConfirm">
+		<div class="buttons">
+			<a class="btn btn-green" ng-click="park()">Confirm</a>
+			<a class="btn btn-red" ng-click="toggleConfirm()">Cancel</a>
+		</div>
+	</div>
+
+	<div class="animate-slide paid-confirmation" ng-show="showPaid" ng-click="showPaid=!showPaid">
+		<img src="/images/checkmark.png">
+		<p>PARKED!</p>
 	</div>
 </div>
