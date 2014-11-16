@@ -76,6 +76,11 @@
   margin-bottom: 15px;
 }
 
+.credit-card-form .btn-pay {
+  background: #aad56c;
+  color: #fff;
+}
+
 /*.credit-card-form .col-xs-12 {
   margin-bottom: 15px;
   padding: 0;

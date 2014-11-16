@@ -14,6 +14,16 @@ var app = angular.module('airPark',
           controller: 'MapCtrl'
         });
 
+        $routeProvider.when('/account/', {
+          templateUrl: '/templates/account.html'//,
+          // controller: 'AccountCtrl'
+        });
+
+        $routeProvider.when('/lot/4918', {
+          templateUrl: '/templates/lot.html',
+          controller: 'LotCtrl'
+        });
+
         $routeProvider.when('/lot/:id', {
           templateUrl: '/templates/lot.html',
           controller: 'LotCtrl'

@@ -62,7 +62,9 @@ app.service('lotsModel', ['$http', '$q', '$cacheFactory', 'baseUrl', 'parseQuery
       {
         id: '1',
         name: 'Basilica',
-        address: '200 Miliary Rd. St. John\'s, NL',
+        address: '200 Miliary Rd',
+        city: 'St. John\'s',
+        province: 'NL',
         cost: 4.00,
         capacity: 10,
         message: 'This lot is only available during the week when there is no special service that day. Check the lot before attempting to park to make sure there are spaces.'
@@ -70,7 +72,9 @@ app.service('lotsModel', ['$http', '$q', '$cacheFactory', 'baseUrl', 'parseQuery
       {
         id: '2',
         name: 'Common Ground',
-        address: '30 Harvey Road, St. John\'s, NL',
+        address: '30 Harvey Road',
+        city: 'St. John\'s',
+        province: 'NL',
         cost: 4.00,
         capacity: 4,
         closed: true
@@ -78,8 +82,10 @@ app.service('lotsModel', ['$http', '$q', '$cacheFactory', 'baseUrl', 'parseQuery
       {
         id: '3',
         name: 'Bruneau Centre for Innovation and Research',
-        address: 'Bruneau Centre for Innovation and Research, Memorial Univerity, St. John\'s NL',
-        cost: 4.00,
+        address: 'Bruneau Centre for Innovation and Research, Memorial Univerity',
+        city: 'St. John\'s',
+        province: 'NL',
+        cost: 5.00,
         capacity: 120,
         closed: false
       }
@@ -99,7 +105,7 @@ app.service('lotsModel', ['$http', '$q', '$cacheFactory', 'baseUrl', 'parseQuery
     // Get the Lat Long
     if (!hasLatLong()) {
       _.forEach(lots, function(lot){
-        getLatLong(lot.address)
+        getLatLong(lot.address + ', ' + lot.city + ', ' + lot.province + ', Canada')
           .then(function(location){
             lot.geolocation = {
               lat: location.lat,

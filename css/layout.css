@@ -34,6 +34,7 @@ a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: -25px;
   }
 
   .air-play .navbar > .container-fluid .navbar-back {

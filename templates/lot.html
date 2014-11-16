@@ -6,11 +6,19 @@
 
 	<div class="container-fluid gutter">
 		
-		<div class="lot-details">{{lot.address}}</div>
+		<div class="lot-details">
+			{{lot.address}}
+			<div class="pull-right">{{lot.city}}, {{lot.province}}</div>
+		</div>
+
+		<div class="lot-details" ng-show="!lot.closed">
+			Day Parking
+			<div class="pull-right colour-purple">{{lot.cost|money}}</div>
+		</div>
 
 		<div class="lot-details">
 			Capacity
-			<div class="pull-right colour-purple">{{lot.capacity}}</div>
+			<div class="pull-right colour-purple">{{lot.capacity}} spaces</div>
 		</div>
 
 		<button class="btn btn-light btn-stretch vertical-margins" ng-click="getDirections()">Get Directions</button>
@@ -72,10 +80,10 @@
 		  <div class="clearfix"></div>
 		  <div class="checkbox">
 		    <label>
-		      <input type="checkbox"> Save card
+		      <input type="checkbox" ng-checked="true"> Save card
 		    </label>
 		  </div>
-		  <button type="submit" class="btn" ng-click="saveCreditCard()">Pay</button>
+		  <button type="submit" class="btn btn-pay" ng-click="saveCreditCard()">Pay</button>
 		  <button type="submit" class="btn btn-default" ng-click="showCreditForm=!showCreditForm">Cancel</button>
 		</form>
 	</div>

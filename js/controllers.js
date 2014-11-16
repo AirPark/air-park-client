@@ -105,7 +105,7 @@ app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', '
 
 
     $scope.getDirections = function() {
-      window.location.href = 'https://www.google.com/maps/dir/Current+Location/' + $scope.lot.address;
+      window.location.href = 'https://www.google.com/maps/dir/Current+Location/' + $scope.lot.address + ', ' + $scope.lot.city + ', ' + $scope.lot.province + ', Canada';
     };
 
     $scope.toggleConfirm = function() {
