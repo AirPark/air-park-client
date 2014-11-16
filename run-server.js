@@ -6,6 +6,7 @@ app.use('/bower_components',express.static(__dirname + '/bower_components/'));
 app.use('/images',express.static(__dirname + '/images/'));
 app.use('/css',express.static(__dirname + '/css/'));
 app.use('/js',express.static(__dirname + '/js/'));
+app.use('/templates',express.static(__dirname + '/template/'));
 
 app.get('/', function(request, response) {
   response.sendfile('index.html');
