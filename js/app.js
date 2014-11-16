@@ -29,7 +29,7 @@ app.run(function ($rootScope, $location) {
 
   $location.url($location.path());
 
-$rootScope.$on('$routeChangeSuccess', function() {
+  $rootScope.$on('$routeChangeSuccess', function() {
     history.push($location.$$path);
   });
 
