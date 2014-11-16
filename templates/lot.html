@@ -1,7 +1,8 @@
 <div class="lot-pane">
-	<div class="lot-map">
+	<div class="lot-map" ng-show="!lotImage">
 		<div lots-map geolocation="geolocation" class="map-canvas" lot="lot"></div>
 	</div>
+	<div ng-show="lotImage" class="lot-image" style="background-image: url('{{lotImage}}')"></div>
 
 	<div class="container-fluid gutter">
 		
@@ -20,13 +21,17 @@
 
 	<div class="park-button" ng-show="!lot.closed">
 		<!-- <button class="btn" ng-click="park()">PARK</button> -->
-		<a class="btn btn-green" ng-click="toggleConfirm()" ng-hide="userIsPaid">PARK</a>
+		<a class="btn btn-green" ng-click="attemptToPark()" ng-hide="userIsPaid">PARK</a>
 		<span ng-show="userIsPaid">You are parked!</span>
+	</div>
+
+	<div class="park-button grey" ng-show="lot.closed">
+		<span>Lot is closed</span>
 	</div>
 
 	<div class="animate-slide confirmation" ng-show="showCreditForm">
 		<form role="form" class="gutter credit-card-form">
-			<h3>Enter payment information</h3>		
+			<!-- <h3>Enter payment information</h3> -->		
 		  <div class="form-group">
 		    <label for="name">Your Name</label>
 		    <input type="text" class="form-control" id="name" placeholder="Enter your name">
@@ -36,9 +41,9 @@
 		    <input type="number" class="form-control" id="number" placeholder="Enter credit card number">
 		  </div>
 		  <div class="form-group">
-		    <label for="year">Expiry</label>
-		    <div>
-					<select class="">
+		    <label for="year" class="">Expiry</label>
+		    <div class="expiry-fields">
+					<select class="form-control">
 			    	<option>January</option>
 			    	<option>February</option>
 			    	<option>March</option>
@@ -52,7 +57,7 @@
 			    	<option>November</option>
 			    	<option>December</option>
 			    </select>
-			    <select class="">
+			    <select class="form-control">
 			    	<option>2014</option>
 			    	<option>2015</option>
 			    	<option>2016</option>
@@ -64,6 +69,7 @@
 		    <label for="cvc">Security Number</label>
 		    <input type="number" class="form-control" id="cvc" placeholder="Enter CVC">
 		  </div> -->
+		  <div class="clearfix"></div>
 		  <div class="checkbox">
 		    <label>
 		      <input type="checkbox"> Save card

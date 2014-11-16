@@ -11,6 +11,16 @@
   text-align: center;
 }
 
+.lot-pane .park-button.grey {
+  background-color: #7b7b7b;
+}
+
+.lot-image {
+  width: 100%;
+  background-size: 100%;
+  height: 140px;
+}
+
 .park-button span {
   font-size: 36px;
   color: #fff;
@@ -50,12 +60,31 @@
 }
 
 .credit-card-form {
-  background: #fff;
+  background: #6442a3;
+  color: #fff;
   box-shadow: 0 5px 10px rgba(0,0,0,0.75);
   height: 100%;
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+  /*overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;*/
 }
+
+.credit-card-form select, .credit-card-form .btn {
+  color: #767676;
+}
+
+.credit-card-form .expiry-fields select {
+  margin-bottom: 15px;
+}
+
+/*.credit-card-form .col-xs-12 {
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+.credit-card-form .col-sm-4,
+.credit-card-form .col-sm-2 {
+  margin-left: 15px;  
+}*/
 
 .animate-slide {
   background: rgba(0,0,0,0.8);

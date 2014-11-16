@@ -7,7 +7,7 @@ app.directive('lotsMap', ['lotsModel', '$location', '$timeout', function(lotsMod
     link: function(scope, element) {
 
       scope.$watch('lot', function(lot) {
-
+        
         if (!lot) {
           return;
         }

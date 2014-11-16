@@ -2,7 +2,8 @@ var app = angular.module('airPark',
     [
       'ngRoute',
       'ngAnimate',
-      'LocalStorageModule'
+      'LocalStorageModule',
+      'angularParse'
     ],
     [
       '$routeProvider',
@@ -69,3 +70,22 @@ app.config(['$httpProvider',function ($httpProvider) {
 if (_.size(_.compact(window.location.hash.split('/'))) < 2) {
   window.location.hash = '#/map/';
 }
+
+Parse.initialize("lhDaUXCvvpnmkWFRuHO7eHg10qqPCwOLhrrvNtOG", "IKc6u0AbLyh9j9bFG31xIa2GoaOzJuq86FaTRjiW");
+
+// var TestObject = Parse.Object.extend("TestObject");
+// var testObject = new TestObject();
+// testObject.save({foo: "bar"}).then(function(object) {
+//   alert("yay! it worked");
+// });
+
+// var query = new Parse.Query();
+// query.find({
+//   success: function(results) {
+//     // results is an array of Parse.Object.
+//   },
+
+//   error: function(error) {
+//     // error is an instance of Parse.Error.
+//   }
+// });

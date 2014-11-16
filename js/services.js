@@ -17,14 +17,12 @@ app.service('userModel', ['localStorageService', function(localStorageService){
 
   function saveUserData(data) {
     _.forEach(data, function(value, key) {
-      console.log(key, value, user);
       user[key] = value;
     }, user);
     localStorageService.set('user', user);
   }
 
   function hasCreditCardData() {
-console.log(3, user);
     return !!user && !!user.stripe && user.stripe.customerId;
   }
 
@@ -36,15 +34,31 @@ console.log(3, user);
 }]);
 
 
-app.service('lotsModel', ['$http', '$q', 'baseUrl',
-  function($http, $q, baseUrl) {
-  console.log(0, baseUrl);
+app.service('lotsModel', ['$http', '$q', '$cacheFactory', 'baseUrl', 'parseQuery',
+  function($http, $q, $cacheFactory, baseUrl, parseQuery) {
 
-    $http.get(baseUrl + 'Lot').then(function(response){
-      console.log(1, response);
-    });
+    var lots = [],
+        query = parseQuery.new('Lot').limit(10),
+        lotCache = $cacheFactory('lotCache');
+    
+    if (lotCache.get('lots')) {
+      lots = lotCache.get('lots');
+    }
 
-    var lots = [
+    // if(_.isEmpty(lots)) {
+    //   parseQuery.find(query)
+    //   .then(function(results) {
+    //     console.log(results);
+    //     _.forEach(results, function(data){
+    //       lots.push(data.attributes);
+    //     });
+    //     console.log(lots);
+    //     lotCache.put('lots', lots);
+    //   });
+    // }
+
+    if (_.isEmpty(lots))
+    lots = [
       {
         id: '1',
         name: 'Basilica',

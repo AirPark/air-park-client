@@ -96,12 +96,13 @@ app.controller('MapCtrl', ['$scope', '$location', 'lotsModel',
   }
 ]);
 
-app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', 'userModel',
-  function($scope, $routeParams, $location, lotsModel, userModel) {
+app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', 'userModel', '$http', '$timeout',
+  function($scope, $routeParams, $location, lotsModel, userModel, $http, $timeout) {
     
     $scope.showConfirm = false;
     $scope.lot = lotsModel.get($routeParams.id);
     $scope.userIsPaid = false;
+
 
     $scope.getDirections = function() {
       window.location.href = 'https://www.google.com/maps/dir/Current+Location/' + $scope.lot.address;
@@ -111,14 +112,25 @@ app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', '
       $scope.showConfirm = !$scope.showConfirm;
     };
 
-    $scope.park = function() {
-      
-      $scope.toggleConfirm();
+    $scope.attemptToPark = function() {
 
       if (!userModel.hasCreditCardData()) {
         $scope.showCreditForm = true;
         return;
       }
+
+      $scope.toggleConfirm();
+    };
+
+    $scope.park = function() {
+
+      if (!userModel.hasCreditCardData()) {
+        $scope.showCreditForm = true;
+        return;
+      }
+
+      $scope.toggleConfirm();
+
       $scope.showPaid = true;
       $scope.userIsPaid = true;
     };
@@ -140,5 +152,17 @@ app.controller('LotCtrl', ['$scope', '$routeParams', '$location', 'lotsModel', '
       $scope.showPaid = true;
       $scope.userIsPaid = true;
     };
+
+    $timeout(function(){
+// $http.get('https://maps.googleapis.com/maps/api/streetview?size=400x400&location='+$scope.lot.geolocation.lat+','+$scope.lot.geolocation.lng+'&key=AIzaSyCo8J1zD3vIW9UK_Y7xW8pwguICxOX1Dic')
+// .then(function(res){
+//   console.log(0,res);
+//   if (res.data) {
+//     $scope.lotImage = res.data;
+//   }
+// });
+    if ($scope.lot.name.indexOf('Basil') >= 0)
+    $scope.lotImage = 'https://maps.googleapis.com/maps/api/streetview?size=1000x400&heading=0&pitch=-25&location='+$scope.lot.geolocation.lat+','+$scope.lot.geolocation.lng+'&key=AIzaSyCo8J1zD3vIW9UK_Y7xW8pwguICxOX1Dic';
+    }, 1000);
   }
 ]);
