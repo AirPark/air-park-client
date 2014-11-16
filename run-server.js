@@ -2,7 +2,10 @@ var express = require('express');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/bower_components/'));
+app.use(express.static(__dirname + '/images/'));
+app.use(express.static(__dirname + '/css/'));
+app.use(express.static(__dirname + '/js/'));
 
 app.get('/', function(request, response) {
   response.sendfile('index.html');
